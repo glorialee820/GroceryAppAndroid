@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/shoppingList_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <TableLayout
+        android:id="@+id/shoppingList_table"
+        android:layout_width="fill_parent"
+        android:layout_height="446dp"
+        android:gravity="top"
+        android:stretchColumns="0,1,2,3">
+
+
+        <TableRow
+            android:id="@+id/shoppinglist_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark">
+
+            <TextView
+                android:id="@+id/name_header"
+                android:layout_width="100dp"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Name"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/price_header"
+                android:layout_width="100dp"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Price/Unit"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/quantity_header"
+                android:layout_width="100dp"
+                android:layout_column="2"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Quantity"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/priority_header"
+                android:layout_width="100dp"
+                android:layout_column="3"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Priority"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/display_shoppinglist_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"/>
+
+        <!--TODO figure out how to center the inputs under the columns-->
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_weight="1"
+        android:gravity="center|bottom"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/name_input"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:cursorVisible="true"
+            android:hint="Name"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/price_input"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Price"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/quantity_input"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="Quantity"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/priority_input"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/add_button"
+            android:background="@android:color/transparent"
+            android:hint="Priority"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@+id/priority_input"
+            android:text="ADD" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/budget_input"
+            android:layout_width="208dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_toLeftOf="@+id/budget_button"
+            android:gravity="center"
+            android:hint="Budget"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/budget_button"
+            android:layout_width="65dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="27dp"
+            android:layout_toRightOf="@+id/budget_input"
+            android:text="ADD" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button_done"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal|center"
+            android:background="@color/colorAccent"
+            android:text="Done"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+<!--https://stackoverflow.com/questions/18207470/adding-table-rows-dynamically-in-android
+https://stackoverflow.com/questions/1698978/android-tablelayout-header-row
+-->
