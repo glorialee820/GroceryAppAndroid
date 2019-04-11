@@ -17,7 +17,7 @@ public class ShoppingBudget{
     private ArrayList<BudgetItem> myShoppingListBought = new ArrayList<>();
     private ArrayList <BudgetItem> myShoppingListUnbought = new ArrayList<>();
     double initialBudget;
-    double remainingBudget;
+    double totalCost;
 
     public ShoppingBudget(double b, ArrayList<ShoppingItem> shoppingList) {
         initialBudget = b;
@@ -34,8 +34,8 @@ public class ShoppingBudget{
         return myShoppingListUnbought;
     }
 
-    public double getRemainingBudget(){
-        return remainingBudget;
+    public double getTotalCost(){
+        return totalCost;
     }
 
     private void buyItems(ArrayList<ShoppingItem> buyFromList) {
@@ -71,15 +71,15 @@ public class ShoppingBudget{
             i++;
         }
 
-        remainingBudget = initialBudget - tempBudget;
+        totalCost = initialBudget - tempBudget;
 
 
 //        TEST: See if the unbought and bought separated correctly
-//        System.out.println("remaining initialBudget: "+remainingBudget);
-//        System.out.println("myShoppingListBought items:");
-//        System.out.println(this.myShoppingListBought.toString());
-//        System.out.println("myShoppingListUnbought items:");
-//        System.out.println(this.myShoppingListUnbought.toString());
+        System.out.println("totalCost: "+ totalCost);
+        System.out.println("myShoppingListBought items:");
+        System.out.println(this.myShoppingListBought.toString());
+        System.out.println("myShoppingListUnbought items:");
+        System.out.println(this.myShoppingListUnbought.toString());
     }
 
 }

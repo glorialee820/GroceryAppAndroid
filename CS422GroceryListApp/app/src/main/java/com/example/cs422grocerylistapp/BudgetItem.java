@@ -31,10 +31,10 @@ public class BudgetItem {
             return cost;
         }
 
-    @Override
-    public String toString() {
-        return "<" + this.name + " " + this.price + " " + this.quantity + " " + this.cost + "> \n";
-    }
+//    @Override
+//    public String toString() {
+//        return "<" + this.name + " " + this.price + " " + this.quantity + " " + this.cost + "> \n";
+//    }
 }
 
 

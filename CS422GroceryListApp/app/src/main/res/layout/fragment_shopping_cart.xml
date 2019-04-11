@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/bought_layout"
         android:layout_width="match_parent"
-        android:layout_height="298dp"
+        android:layout_height="272dp"
         android:orientation="vertical">
 
         <TextView
@@ -25,7 +25,7 @@
         <TableLayout
             android:id="@+id/bought_table"
             android:layout_width="match_parent"
-            android:layout_height="267dp"
+            android:layout_height="271dp"
             android:gravity="top"
             android:stretchColumns="0,1,2,3">
 
@@ -107,15 +107,14 @@
             android:layout_width="108dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:layout_toRightOf="@+id/total_cost_label"
-            android:text="$00.00" />
+            android:layout_toRightOf="@+id/total_cost_label" />
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/unbought_layout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="232dp"
         android:orientation="vertical">
 
         <TextView
@@ -131,7 +130,7 @@
         <TableLayout
             android:id="@+id/unbought_table"
             android:layout_width="fill_parent"
-            android:layout_height="250dp"
+            android:layout_height="230dp"
             android:gravity="top"
             android:stretchColumns="0,1,2,3">
 
@@ -191,5 +190,15 @@
         </TableLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/display_button"
+        android:text="Show Purchase"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal|center"
+        android:background="@color/colorAccent"
+        android:textSize="20dp"
+        android:textStyle="bold" />
 
 </LinearLayout>
