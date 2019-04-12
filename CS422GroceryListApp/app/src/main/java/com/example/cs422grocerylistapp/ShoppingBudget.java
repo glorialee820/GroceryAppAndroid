@@ -26,6 +26,10 @@ public class ShoppingBudget{
         buyItems(shoppingList);
     }
 
+    public ShoppingBudget(){
+
+    }
+
     public ArrayList<BudgetItem> getMyShoppingListBought() {
         return myShoppingListBought;
     }
@@ -75,11 +79,11 @@ public class ShoppingBudget{
 
 
 //        TEST: See if the unbought and bought separated correctly
-        System.out.println("totalCost: "+ totalCost);
-        System.out.println("myShoppingListBought items:");
-        System.out.println(this.myShoppingListBought.toString());
-        System.out.println("myShoppingListUnbought items:");
-        System.out.println(this.myShoppingListUnbought.toString());
+//        System.out.println("totalCost: "+ totalCost);
+//        System.out.println("myShoppingListBought items:");
+//        System.out.println(this.myShoppingListBought.toString());
+//        System.out.println("myShoppingListUnbought items:");
+//        System.out.println(this.myShoppingListUnbought.toString());
     }
 
 }

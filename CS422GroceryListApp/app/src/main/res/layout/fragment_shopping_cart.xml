@@ -84,7 +84,9 @@
 
         </TableLayout>
 
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -93,21 +95,23 @@
 
         <TextView
             android:id="@+id/total_cost_label"
-            android:layout_width="108dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="225dp"
+            android:layout_marginLeft="220dp"
+            android:layout_toLeftOf="@+id/total_cost"
             android:gravity="center|bottom"
             android:text="Total Cost:"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:layout_toLeftOf="@+id/total_cost"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/total_cost"
-            android:layout_width="108dp"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
             android:layout_marginLeft="0dp"
-            android:layout_toRightOf="@+id/total_cost_label" />
+            android:layout_toRightOf="@+id/total_cost_label"
+            android:gravity="center_horizontal"
+            android:textAlignment="gravity" />
 
     </LinearLayout>
 

@@ -29,25 +29,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-
-        /*
-        This will retrieve the unbought items from the database and display it on the shopping list tab
-         */
-//        SQLiteShoppingCartService sqLiteShoppingCartService = new SQLiteShoppingCartService(this);
-//        SQLiteDatabase sqLiteDatabase = sqLiteShoppingCartService.getReadableDatabase();
-//        sqLiteDatabase.beginTransaction();
-//        String selectUnboughtItems = "SELECT * FROM unbought_items";
-//        Cursor cursor = sqLiteDatabase.rawQuery(selectUnboughtItems,null);
-//
-//        cursor.moveToFirst();
-//        do{
-//
-//
-//        }while (cursor.moveToNext());
-//        cursor.close();
-
-
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

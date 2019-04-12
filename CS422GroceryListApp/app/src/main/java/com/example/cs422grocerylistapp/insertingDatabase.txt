@@ -340,3 +340,84 @@ public class FragmentShoppingList extends Fragment{
 
     }
 }
+
+
+                //change the price to currency format (couldn't use - broke code)
+//                Locale locale = Locale.US;
+//                NumberFormat numberFormat = NumberFormat.getCurrencyInstance(locale);
+//                item_price.setText(numberFormat.format(Double.parseDouble(price_input.getText().toString())));
+
+
+
+
+
+//            try {
+//                //display unbought table from database in unbought table in shopping cart tab
+//                int unboughtRowId = 0;
+//                String selectUnboughtQuery = "SELECT * FROM unbought_items";
+//                Cursor unboughtCursor = sqLiteDatabase.rawQuery(selectUnboughtQuery, null, null);
+//                if (unboughtCursor.getCount() > 0) {
+//                    while (unboughtCursor.moveToNext()) {
+//                        String unbought_name = unboughtCursor.getString(unboughtCursor.getColumnIndexOrThrow("item_name"));
+//                        double unbought_price = unboughtCursor.getDouble(unboughtCursor.getColumnIndexOrThrow("item_price"));
+//                        int unbought_quantity = unboughtCursor.getInt(unboughtCursor.getColumnIndexOrThrow("item_quantity"));
+//                        double unbought_cost = unboughtCursor.getInt(unboughtCursor.getColumnIndexOrThrow("item_cost"));
+//
+//                        TableRow unboughtListRow = new TableRow(getActivity().getApplicationContext());
+//                        unboughtListRow.setId(unboughtRowId++);
+//
+//                        String[] unboughtColumnNames = {unbought_name, Double.toString(unbought_price), Integer.toString(unbought_quantity), Double.toString(unbought_cost)};
+//
+//                        for (int i = 0; i < unboughtColumnNames.length; i++) {
+//                            TextView unboughtListRowText = new TextView(getActivity().getApplicationContext());
+//                            unboughtListRowText.setText(unboughtColumnNames[i]);
+//                            unboughtListRowText.setGravity(Gravity.CENTER_HORIZONTAL);
+//                            unboughtListRow.addView(unboughtListRowText);
+//                        }
+//
+//                        unboughtTable.addView(unboughtListRow, new TableLayout.LayoutParams(
+//                                ViewGroup.LayoutParams.WRAP_CONTENT,
+//                                ViewGroup.LayoutParams.WRAP_CONTENT));
+//                    }
+//
+//                } else {
+//                    sqLiteDatabase.execSQL("DELETE FROM unbought_items");
+//                }
+//            } catch (SQLException sqlException) {
+//                sqlException.printStackTrace();
+//            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

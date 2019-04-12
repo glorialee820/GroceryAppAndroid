@@ -50,7 +50,7 @@ public class Database {
 //        sqLiteShoppingCartService.insert("unbought_table", null, contentValues);
 //        sqLiteShoppingCartService.endTransaction();
 //        sqLiteShoppingCartService.close();
-    }
+}
 //
 //    public void addBoughtItem(FragmentShoppingList fragmentShoppingList){
 //        SQLiteDatabase sqLiteShoppingCartService = this.getWritableDatabase();
