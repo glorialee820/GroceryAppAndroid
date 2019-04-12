@@ -19,6 +19,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.sql.DatabaseMetaData;
 import java.util.ArrayList;
 
 
@@ -58,48 +60,48 @@ public class FragmentShoppingList extends Fragment {
         SQLiteDatabase sqLiteDatabase = sqLiteShoppingCartService.getWritableDatabase();
         sqLiteDatabase.execSQL("DELETE FROM shopping_list");
         sqLiteDatabase.execSQL("DELETE FROM bought_items");
-        sqLiteDatabase.execSQL("DELETE FROM unbought_items");
-
 
         /*
         Display the unbought items from the last shopping trip into the shopping list
          */
-        //if() {//figure out if there's a way to say if the unbought_item tables is null
 
+//        if () {//figure out if there's a way to say if the unbought_item tables is null
 
-//        int lastTripRowID = 0;
-//        String selectLastTrip = "SELECT * FROM unbought_items";
-//        Cursor lastTripCursor = sqLiteDatabase.rawQuery(selectLastTrip, null, null);
-//        if (lastTripCursor.getCount() > 0) {
-//            while (lastTripCursor.moveToNext()) {
-//                String lastTrip_name = lastTripCursor.getString(lastTripCursor.getColumnIndexOrThrow("item_name"));
-//                double lastTrip_price = lastTripCursor.getDouble(lastTripCursor.getColumnIndexOrThrow("item_price"));
-//                int lastTrip_quantity = lastTripCursor.getInt(lastTripCursor.getColumnIndexOrThrow("item_quantity"));
-//                double lastTrip_cost = lastTripCursor.getInt(lastTripCursor.getColumnIndexOrThrow("item_cost"));
-//
-//                TableRow lastTripRow = new TableRow(getActivity().getApplicationContext());
-//                lastTripRow.setId(lastTripRowID++);
-//
-//                String[] lastTripColumnNames = {lastTrip_name, Double.toString(lastTrip_price), Integer.toString(lastTrip_quantity), Double.toString(lastTrip_cost)};
-//
-//                for (int i = 0; i < lastTripColumnNames.length; i++) {
-//                    TextView lastTripRowText = new TextView(getActivity().getApplicationContext());
-//                    lastTripRowText.setText(lastTripColumnNames[i]);
-//                    lastTripRowText.setGravity(Gravity.CENTER_HORIZONTAL);
-//                    lastTripRow.addView(lastTripRowText);
-//                }
-//
-//                shoppingListTable.addView(lastTripRow, new TableLayout.LayoutParams(
-//                        ViewGroup.LayoutParams.WRAP_CONTENT,
-//                        ViewGroup.LayoutParams.WRAP_CONTENT));
-//
-//            }
+            int lastTripRowID = 0;
+
+            String selectLastTrip = "SELECT * FROM unbought_items";
+            Cursor lastTripCursor = sqLiteDatabase.rawQuery(selectLastTrip, null, null);
+            if (lastTripCursor.getCount() > 0) {
+                while (lastTripCursor.moveToNext()) {
+                    String lastTrip_name = lastTripCursor.getString(lastTripCursor.getColumnIndexOrThrow("item_name"));
+                    double lastTrip_price = lastTripCursor.getDouble(lastTripCursor.getColumnIndexOrThrow("item_price"));
+                    int lastTrip_quantity = lastTripCursor.getInt(lastTripCursor.getColumnIndexOrThrow("item_quantity"));
+                    int lastTrip_cost_to_priority = lastTripCursor.getInt(lastTripCursor.getColumnIndexOrThrow("item_cost"));
+
+                    TableRow lastTripRow = new TableRow(getActivity().getApplicationContext());
+                    lastTripRow.setId(lastTripRowID++);
+
+                    String[] lastTripColumnNames = {lastTrip_name, Double.toString(lastTrip_price), Integer.toString(lastTrip_quantity), Integer.toString(lastTrip_cost_to_priority)};
+
+                    for (int i = 0; i < lastTripColumnNames.length; i++) {
+                        TextView lastTripRowText = new TextView(getActivity().getApplicationContext());
+                        lastTripRowText.setText(lastTripColumnNames[i]);
+                        lastTripRowText.setGravity(Gravity.CENTER_HORIZONTAL);
+                        lastTripRow.addView(lastTripRowText);
+                    }
+
+                    shoppingListTable.addView(lastTripRow, new TableLayout.LayoutParams(
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                }
+            }
 //        }
 
-            //end of the attempt at displying table
+            // end of the attempt at displaying table
 
 
-        //TODO figure out to display unbought table from the database into the shopping list table
+            //TODO figure out to display unbought table from the database into the shopping list table
 
 
         /*
@@ -214,8 +216,8 @@ public class FragmentShoppingList extends Fragment {
                     }
                     shoppingListCursor.close();
 
-                    System.out.println("shopping list");
-                    System.out.println(shoppingItemArrayList);
+//                    System.out.println("shopping list");
+//                    System.out.println(shoppingItemArrayList);
 
                     //going through shopping array list and differentiating between bought and unbought
                     ShoppingBudget shoppingBudget = new ShoppingBudget(Double.parseDouble(budget_input.getText().toString()), shoppingItemArrayList);
@@ -223,6 +225,22 @@ public class FragmentShoppingList extends Fragment {
                     ArrayList<BudgetItem> boughtList = shoppingBudget.getMyShoppingListBought();
 
                     budget_input.getText().clear();
+
+                    ContentValues boughtListContentValues = new ContentValues();
+
+                    for (int i = 0; i < boughtList.size(); i++) {
+                        BudgetItem budgetItem = boughtList.get(i);
+                        boughtListContentValues.put("item_name", budgetItem.getName());
+                        boughtListContentValues.put("item_price", budgetItem.getPrice());
+                        boughtListContentValues.put("item_quantity", budgetItem.getQuantity());
+                        boughtListContentValues.put("item_cost", budgetItem.getCost());
+
+                        //assumption will always buy something
+                        sqLiteDatabase.insert("bought_items", null, boughtListContentValues);
+                    }
+//
+//                    System.out.println("bought list");
+//                    System.out.println(boughtList);
 
                     ContentValues unboughtListContentValues = new ContentValues();
 
@@ -239,24 +257,10 @@ public class FragmentShoppingList extends Fragment {
                         }
                     }
 
+
 //                    System.out.println("unbought list");
 //                    System.out.println(unboughtList);
 
-                    ContentValues boughtListContentValues = new ContentValues();
-
-                    for (int i = 0; i < boughtList.size(); i++) {
-                        BudgetItem budgetItem = boughtList.get(i);
-                        boughtListContentValues.put("item_name", budgetItem.getName());
-                        boughtListContentValues.put("item_price", budgetItem.getPrice());
-                        boughtListContentValues.put("item_quantity", budgetItem.getQuantity());
-                        boughtListContentValues.put("item_cost", budgetItem.getCost());
-
-                        //assumption will always buy something
-                        sqLiteDatabase.insert("bought_items", null, boughtListContentValues);
-                    }
-
-//                    System.out.println("bought list");
-//                    System.out.println(boughtList);
 
                     sqLiteDatabase.close();
 

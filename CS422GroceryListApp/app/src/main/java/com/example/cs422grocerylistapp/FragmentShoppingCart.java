@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -62,10 +63,14 @@ public class FragmentShoppingCart extends Fragment {
                             String bought_name = boughtCursor.getString(boughtCursor.getColumnIndexOrThrow("item_name"));
                             double bought_price = boughtCursor.getDouble(boughtCursor.getColumnIndexOrThrow("item_price"));
                             int bought_quantity = boughtCursor.getInt(boughtCursor.getColumnIndexOrThrow("item_quantity"));
-                            double bought_cost = boughtCursor.getInt(boughtCursor.getColumnIndexOrThrow("item_cost"));
+                            double bought_cost = boughtCursor.getDouble(boughtCursor.getColumnIndexOrThrow("item_cost"));
 
-                            ArrayList<BudgetItem> boughtArrayList = new ArrayList<>();
-                            boughtArrayList.add(new BudgetItem(bought_name,bought_price,bought_quantity,bought_cost));
+
+//                            ArrayList<BudgetItem> boughtArrayList = new ArrayList<>();
+//                            boughtArrayList.add(new BudgetItem(bought_name,bought_price,bought_quantity,bought_cost));
+//                            System.out.println("bought Array List");
+//                            System.out.println(boughtArrayList);
+
 
                             TableRow boughtListRow = new TableRow(getActivity().getApplicationContext());
                             boughtListRow.setId(boughtRowId++);
@@ -83,8 +88,6 @@ public class FragmentShoppingCart extends Fragment {
                                     ViewGroup.LayoutParams.WRAP_CONTENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT));
 
-//                            System.out.println("bought Array List");
-//                            System.out.println(boughtArrayList);
                         }
 
                         boughtCursor.close();
@@ -100,12 +103,13 @@ public class FragmentShoppingCart extends Fragment {
                             String unbought_name = unboughtCursor.getString(unboughtCursor.getColumnIndexOrThrow("item_name"));
                             double unbought_price = unboughtCursor.getDouble(unboughtCursor.getColumnIndexOrThrow("item_price"));
                             int unbought_quantity = unboughtCursor.getInt(unboughtCursor.getColumnIndexOrThrow("item_quantity"));
-                            double unbought_cost = unboughtCursor.getInt(unboughtCursor.getColumnIndexOrThrow("item_cost"));
+                            double unbought_cost = unboughtCursor.getDouble(unboughtCursor.getColumnIndexOrThrow("item_cost"));
 
                             TableRow unboughtListRow = new TableRow(getActivity().getApplicationContext());
                             unboughtListRow.setId(unboughtRowId++);
 
                             String[] unboughtColumnNames = {unbought_name, Double.toString(unbought_price), Integer.toString(unbought_quantity), Double.toString(unbought_cost)};
+
 
                             for (int i = 0; i < unboughtColumnNames.length; i++) {
                                 TextView unboughtListRowText = new TextView(getActivity().getApplicationContext());
@@ -121,6 +125,12 @@ public class FragmentShoppingCart extends Fragment {
                         unboughtCursor.close();
                     }
 
+                                            /*
+                    Update the database (unbought_items) after it's displayed to make cost be 1 so it's the new priority when displayed
+                     */
+
+                    SQLiteStatement updatePriority = sqLiteDatabase.compileStatement("UPDATE unbought_items SET item_cost = 1");
+                    updatePriority.execute();
 
                 } catch (SQLException sqLiteException) {
                     sqLiteException.printStackTrace();
@@ -131,7 +141,7 @@ public class FragmentShoppingCart extends Fragment {
                 double totalCost = 0;
                 Cursor costCursor = sqLiteDatabase.rawQuery("SELECT SUM(item_cost) FROM bought_items", null);
                 if (costCursor.moveToFirst()) {
-                    totalCost = costCursor.getInt(0);
+                    totalCost = costCursor.getDouble(0);
                 }
                 while (costCursor.moveToNext()) ;
 

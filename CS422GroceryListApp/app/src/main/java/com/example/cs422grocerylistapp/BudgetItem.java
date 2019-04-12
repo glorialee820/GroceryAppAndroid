@@ -28,13 +28,13 @@ public class BudgetItem {
         }
 
         public double getCost(){
-            return cost;
+            return getPrice() * getQuantity();
         }
 
-//    @Override
-//    public String toString() {
-//        return "<" + this.name + " " + this.price + " " + this.quantity + " " + this.cost + "> \n";
-//    }
+    @Override
+    public String toString() {
+        return "<" + this.name + " " + this.price + " " + this.quantity + " " + this.cost + "> \n";
+    }
 }
 
 
